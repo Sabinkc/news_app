@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({super.key});
+  final String category_name;
+  final String category_image;
+  const CategoryCard(
+      {super.key, required this.category_name, required this.category_image});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class CategoryCard extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                "assets/bussiness.jpg",
+                category_image,
                 height: 80,
                 width: 130,
                 fit: BoxFit.cover,
@@ -25,7 +28,7 @@ class CategoryCard extends StatelessWidget {
                 color: Colors.black26, borderRadius: BorderRadius.circular(10)),
           ),
           Text(
-            "Business",
+            category_name,
             style: TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
           )

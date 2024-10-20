@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SliderCard extends StatelessWidget {
-  const SliderCard({super.key});
+  final String sliderText;
+  final String sliderImage;
+  const SliderCard(
+      {super.key, required this.sliderText, required this.sliderImage});
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +13,21 @@ class SliderCard extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
-            "assets/bussiness.jpg",
+          child: Image.network(
+            sliderImage,
             width: 200,
             height: 200,
             fit: BoxFit.cover,
+            errorBuilder: (context, object, stackTree) {
+              return Container(
+                color: Colors.grey,
+                child: Icon(
+                  Icons.error,
+                  color: Colors.white,
+                  size: 50,
+                ),
+              );
+            },
           ),
         ),
         Positioned(
@@ -31,10 +44,12 @@ class SliderCard extends StatelessWidget {
                 )),
             child: Center(
               child: Text(
-                "Bow to the authority of silenceforce",
+                sliderText,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 15,
                     fontWeight: FontWeight.w600),
               ),
             ),

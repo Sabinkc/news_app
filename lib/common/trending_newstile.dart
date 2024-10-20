@@ -2,7 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TrendingNewstile extends StatelessWidget {
-  const TrendingNewstile({super.key});
+  final String title;
+  final String description;
+  final String image;
+  const TrendingNewstile(
+      {super.key,
+      required this.title,
+      required this.description,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +22,13 @@ class TrendingNewstile extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  "assets/bussiness.jpg",
+                child: Image.network(
+                  image,
                   height: 100,
+                  errorBuilder: (context, error, stackTrace) => Icon(
+                    Icons.error,
+                    size: 50,
+                  ),
                 ),
               ),
             ),
@@ -28,13 +39,13 @@ class TrendingNewstile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Rui Costa outsprints to win the final.",
+                      title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      "Rui Costa is the first nigerain man to win the title of bicycle racing world cup.",
+                      description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Colors.grey),
