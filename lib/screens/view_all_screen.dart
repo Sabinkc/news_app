@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/common/trending_newstile.dart';
-import 'package:news_app/services/category_news_api.dart';
+import 'package:news_app/services/trending_news_api.dart';
 
-class CategoryNewsScreen extends StatefulWidget {
-  final String category;
-  const CategoryNewsScreen({super.key, required this.category});
+class ViewAllScreen extends StatefulWidget {
+  const ViewAllScreen({super.key});
 
   @override
-  State<CategoryNewsScreen> createState() => _CategoryNewsScreenState();
+  State<ViewAllScreen> createState() => _CategoryNewsScreenState();
 }
 
-class _CategoryNewsScreenState extends State<CategoryNewsScreen> {
-  bool isCatLoading = true;
-  CategoryNewsApi categoryNewsApi = CategoryNewsApi();
+class _CategoryNewsScreenState extends State<ViewAllScreen> {
+  bool isLoading = true;
+  TrendingNewsApi trendingNewsApi = TrendingNewsApi();
 
   @override
   void initState() {
-    fetchCategoryNews();
+    fetchTrendingNews();
     super.initState();
   }
 
-  Future<void> fetchCategoryNews() async {
-    await categoryNewsApi.fetchCategoryNews(widget.category);
+  Future<void> fetchTrendingNews() async {
+    await trendingNewsApi.fetchTrendingNews();
     setState(() {
-      isCatLoading = false;
+      isLoading = false;
     });
   }
 
@@ -45,7 +44,7 @@ class _CategoryNewsScreenState extends State<CategoryNewsScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "${widget.category}",
+                "World",
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               Text(
@@ -56,18 +55,18 @@ class _CategoryNewsScreenState extends State<CategoryNewsScreen> {
             ],
           ),
         ),
-        body: isCatLoading
+        body: isLoading
             ? Center(child: CircularProgressIndicator())
             : ListView.builder(
-                itemCount: categoryNewsApi.categoryNews.length,
+                itemCount: trendingNewsApi.trendingNews.length,
                 itemBuilder: (context, index) {
                   return TrendingNewstile(
-                      title: categoryNewsApi.categoryNews[index]["title"] ??
+                      title: trendingNewsApi.trendingNews[index]["title"] ??
                           "No title",
-                      description: categoryNewsApi.categoryNews[index]
+                      description: trendingNewsApi.trendingNews[index]
                               ["description"] ??
                           "No description",
-                      image: categoryNewsApi.categoryNews[index]
+                      image: trendingNewsApi.trendingNews[index]
                               ["urlToImage"] ??
                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDN5oYPxAWzDeDqBjmcFv0C-t1N_PwGhJEdQ&s");
                 }));
