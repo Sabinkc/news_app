@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/common/trending_newstile.dart';
 import 'package:news_app/services/category_news_api.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CategoryNewsScreen extends StatefulWidget {
   final String category;
@@ -62,6 +63,20 @@ class _CategoryNewsScreenState extends State<CategoryNewsScreen> {
                 itemCount: categoryNewsApi.categoryNews.length,
                 itemBuilder: (context, index) {
                   return TrendingNewstile(
+                      onTap: () {
+                        final Uri url = Uri.parse(
+                            categoryNewsApi.categoryNews[index]["url"]);
+
+                        Future<void> _launchUrl() async {
+                          if (!await launchUrl(url)) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                duration: Duration(seconds: 3),
+                                content: Text("Couldnot load url")));
+                          }
+                        }
+
+                        _launchUrl();
+                      },
                       title: categoryNewsApi.categoryNews[index]["title"] ??
                           "No title",
                       description: categoryNewsApi.categoryNews[index]

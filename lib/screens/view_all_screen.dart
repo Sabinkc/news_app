@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/common/trending_newstile.dart';
 import 'package:news_app/services/trending_news_api.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ViewAllScreen extends StatefulWidget {
   const ViewAllScreen({super.key});
@@ -61,6 +62,24 @@ class _CategoryNewsScreenState extends State<ViewAllScreen> {
                 itemCount: trendingNewsApi.trendingNews.length,
                 itemBuilder: (context, index) {
                   return TrendingNewstile(
+                      onTap: () {
+                        final Uri _url = Uri.parse(
+                            trendingNewsApi.trendingNews[index]["url"]);
+
+                        Future<void> _launchUrl() async {
+                          if (!await launchUrl(_url)) {
+                            // Show a Snackbar if URL can't be launched
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Could not launch $_url'),
+                                duration: Duration(seconds: 3),
+                              ),
+                            );
+                          }
+                        }
+
+                        _launchUrl();
+                      },
                       title: trendingNewsApi.trendingNews[index]["title"] ??
                           "No title",
                       description: trendingNewsApi.trendingNews[index]
