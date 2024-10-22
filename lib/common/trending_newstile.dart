@@ -111,7 +111,9 @@ class TrendingNewstile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
                     image,
+                    fit: BoxFit.cover,
                     height: 100,
+                    width: 100,
                     errorBuilder: (context, error, stackTrace) => Icon(
                       Icons.error,
                       size: 50,

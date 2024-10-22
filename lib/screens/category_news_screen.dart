@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/common/shimmer_trendingtile.dart';
 import 'package:news_app/common/trending_newstile.dart';
 import 'package:news_app/services/category_news_api.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -58,7 +59,7 @@ class _CategoryNewsScreenState extends State<CategoryNewsScreen> {
           ),
         ),
         body: isCatLoading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: ShimmerTrendingtile())
             : ListView.builder(
                 itemCount: categoryNewsApi.categoryNews.length,
                 itemBuilder: (context, index) {

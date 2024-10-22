@@ -24,16 +24,19 @@ class LandingScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: Text(
               textAlign: TextAlign.center,
-              "News from around the world for you",
+              "Bringing the world's news to your fingertips",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Text(
-              "Best time to read, take your time to read a little more of this world",
+              "Take your time, there’s a world of stories waiting for you.",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15),
             ),
           ),
           SizedBox(
@@ -42,16 +45,14 @@ class LandingScreen extends StatelessWidget {
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  padding: EdgeInsets.symmetric(horizontal: 90, vertical: 10)),
+                  padding: EdgeInsets.symmetric(horizontal: 110, vertical: 12)),
               onPressed: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => HomeScreen()));
               },
               child: Text(
                 "GetStarted",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                style: TextStyle(color: Colors.white, fontSize: 20),
               )),
         ],
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/home_screen.dart';
 import 'package:news_app/screens/landing_screen.dart';
+import 'package:news_app/screens/login_screen.dart';
+import 'package:news_app/screens/signup_screen.dart';
 
 void main(List<String> args) {
   runApp(MyApplication());
@@ -12,8 +14,19 @@ class MyApplication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.blue,
+        hintColor: Colors.blueAccent,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.black,
+        hintColor: Colors.redAccent,
+      ),
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: LandingScreen(),
+      home: SignupScreen(),
     );
   }
 }
