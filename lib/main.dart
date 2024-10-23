@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/home_screen.dart';
 import 'package:news_app/screens/landing_screen.dart';
 import 'package:news_app/screens/login_screen.dart';
 import 'package:news_app/screens/signup_screen.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApplication());
 }
 
@@ -26,7 +29,7 @@ class MyApplication extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: SignupScreen(),
+      home: LandingScreen(),
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:news_app/common/colors.dart';
 import 'package:news_app/common/common_button.dart';
 import 'package:news_app/common/common_textfield.dart';
+import 'package:news_app/screens/signup_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -59,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     color: Colors.white,
                   ),
-                  height: MediaQuery.of(context).size.height * 0.65,
+                  height: MediaQuery.of(context).size.height * 0.67,
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
@@ -175,14 +177,22 @@ class LoginScreen extends StatelessWidget {
                                   color: CommonColor.primaryColor,
                                   fontSize: 16),
                             ),
-                            Text(
-                              "SignUp",
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: CommonColor.primaryColor,
-                                  color: CommonColor.primaryColor,
-                                  fontSize: 16),
-                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SignupScreen()));
+                              },
+                              child: Text(
+                                "SignUp",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: CommonColor.primaryColor,
+                                    color: CommonColor.primaryColor,
+                                    fontSize: 16),
+                              ),
+                            )
                           ],
                         )
                       ],

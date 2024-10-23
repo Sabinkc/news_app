@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:news_app/common/colors.dart';
 import 'package:news_app/common/common_button.dart';
 import 'package:news_app/common/common_textfield.dart';
+import 'package:news_app/screens/login_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -174,7 +176,7 @@ class SignupScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: 40,
+                            height: 30,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -185,14 +187,19 @@ class SignupScreen extends StatelessWidget {
                                     color: CommonColor.primaryColor,
                                     fontSize: 16),
                               ),
-                              Text(
-                                "LogIn",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: CommonColor.primaryColor,
-                                    color: CommonColor.primaryColor,
-                                    fontSize: 16),
-                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "LogIn",
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: CommonColor.primaryColor,
+                                      color: CommonColor.primaryColor,
+                                      fontSize: 16),
+                                ),
+                              )
                             ],
                           )
                         ],

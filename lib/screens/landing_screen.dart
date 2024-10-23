@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/home_screen.dart';
+import 'package:news_app/screens/login_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -47,8 +49,12 @@ class LandingScreen extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   padding: EdgeInsets.symmetric(horizontal: 110, vertical: 12)),
               onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+                Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                        duration: Duration(seconds: 1),
+                        child: LoginScreen(),
+                        type: PageTransitionType.leftToRight));
               },
               child: Text(
                 "GetStarted",
