@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/screens/home_screen.dart';
 import 'package:news_app/screens/landing_screen.dart';
 import 'package:news_app/screens/login_screen.dart';
+import 'package:news_app/screens/search_screen.dart';
 import 'package:news_app/screens/signup_screen.dart';
 
 void main(List<String> args) async {

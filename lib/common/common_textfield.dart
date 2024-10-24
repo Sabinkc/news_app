@@ -6,16 +6,22 @@ class CommonTextfield extends StatelessWidget {
   final String hintText;
   final IconData suffixIcon;
   bool isObscure;
+  TextEditingController? controller;
+  Function(String)? onChanged;
   CommonTextfield(
       {super.key,
       required this.labelText,
       required this.hintText,
       required this.suffixIcon,
-      required this.isObscure});
+      required this.isObscure,
+      this.controller,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
+      controller: controller,
       obscureText: isObscure,
       cursorColor: Colors.grey,
       decoration: InputDecoration(

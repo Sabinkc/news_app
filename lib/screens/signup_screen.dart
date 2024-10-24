@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:news_app/common/colors.dart';
@@ -11,6 +12,36 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
+
+    Future SignUp(String email, String password) async {
+      if (email == "" || password == "") {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Enter the required field"),
+          ),
+        );
+      } else {
+        try {
+          UserCredential? _userCredential = await FirebaseAuth.instance
+              .createUserWithEmailAndPassword(email: email, password: password)
+              .then((value) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
+          });
+        } on FirebaseAuthException catch (e) {
+          showDialog(
+              context: context,
+              builder: ((context) => AlertDialog(
+                    title: Text(e.toString()),
+                  )));
+        }
+        ;
+      }
+    }
+
     return SafeArea(
       child: Scaffold(
           backgroundColor: CommonColor.primaryColor,
@@ -72,6 +103,7 @@ class SignupScreen extends StatelessWidget {
                             height: 30,
                           ),
                           CommonTextfield(
+                            controller: _emailController,
                             labelText: "Email",
                             hintText: "example@gmail.com",
                             isObscure: false,
@@ -81,6 +113,7 @@ class SignupScreen extends StatelessWidget {
                             height: 20,
                           ),
                           CommonTextfield(
+                            controller: _passwordController,
                             labelText: "Password",
                             hintText: "**********",
                             isObscure: true,
@@ -117,7 +150,10 @@ class SignupScreen extends StatelessWidget {
                           ),
                           Center(
                             child: CommonButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                SignUp(_emailController.text,
+                                    _passwordController.text);
+                              },
                               buttonName: "SignUp",
                               horizontalPadding: 135,
                               verticalPadding: 10,

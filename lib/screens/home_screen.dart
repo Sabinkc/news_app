@@ -7,6 +7,7 @@ import 'package:news_app/common/slider_card.dart';
 import 'package:news_app/common/trending_newstile.dart';
 import 'package:news_app/repository/categories_list_data.dart';
 import 'package:news_app/screens/category_news_screen.dart';
+import 'package:news_app/screens/search_screen.dart';
 import 'package:news_app/screens/view_all_screen.dart';
 import 'package:news_app/services/breaking_news_api.dart';
 import 'package:news_app/services/trending_news_api.dart';
@@ -64,7 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
         }),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchScreen()));
+              },
               icon: Icon(
                 Icons.search,
                 color: Colors.blue,

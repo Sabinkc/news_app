@@ -49,12 +49,8 @@ class LandingScreen extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   padding: EdgeInsets.symmetric(horizontal: 110, vertical: 12)),
               onPressed: () {
-                Navigator.pushReplacement(
-                    context,
-                    PageTransition(
-                        duration: Duration(seconds: 1),
-                        child: LoginScreen(),
-                        type: PageTransitionType.leftToRight));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               },
               child: Text(
                 "GetStarted",
