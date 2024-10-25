@@ -15,24 +15,38 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+
     return SafeArea(
       child: Drawer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 10,
+            ),
+            CircleAvatar(
+                radius: 30,
+                child: Icon(
+                  Icons.people,
+                  size: 30,
+                )),
+            SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "World",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                  "Loggedin Email: ",
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
                 ),
                 Text(
-                  "News",
+                  user!.email ?? "Guest",
                   style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w600,
-                      fontSize: 20),
+                      fontSize: 15),
                 ),
               ],
             ),
