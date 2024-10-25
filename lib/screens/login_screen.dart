@@ -250,6 +250,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:news_app/common/colors.dart';
+import 'package:news_app/common/common_alert_dialogue_box.dart';
 import 'package:news_app/common/common_button.dart';
 import 'package:news_app/common/common_textfield.dart';
 import 'package:news_app/screens/home_screen.dart';
@@ -266,7 +267,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  bool _isLoading = false; // Variable to manage loading state
+  bool _isLoading = false;
+  bool isPasswordObscure = true; // Variable to manage loading state
 
   signIn(String email, String password) async {
     try {
@@ -274,9 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
         showDialog(
             context: context,
             builder: (context) {
-              return AlertDialog(
-                title: Text("Enter required fields"),
-              );
+              return CommonAlertDialogueBox(title: "Enter required fields");
             });
       } else {
         setState(() {
@@ -303,7 +303,11 @@ class _LoginScreenState extends State<LoginScreen> {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                title: Text(e.toString()),
+                backgroundColor: Colors.blue,
+                title: Text(
+                  e.toString(),
+                  style: TextStyle(color: Colors.white),
+                ),
               ));
     }
   }
@@ -380,8 +384,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: _passwordController,
                             labelText: "Password",
                             hintText: "**********",
-                            isObscure: true,
-                            suffixIcon: Icons.lock_clock_outlined,
+                            isObscure: isPasswordObscure,
+                            suffixIcon: Icons.visibility,
+                            onSuffixIconPressed: () {
+                              setState(() {
+                                isPasswordObscure = !isPasswordObscure;
+                              });
+                            },
                           ),
                           const SizedBox(height: 10),
                           Text(

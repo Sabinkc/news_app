@@ -5,9 +5,11 @@ class CommonTextfield extends StatelessWidget {
   final String labelText;
   final String hintText;
   final IconData suffixIcon;
+
   bool isObscure;
   TextEditingController? controller;
   Function(String)? onChanged;
+  Function()? onSuffixIconPressed;
   CommonTextfield(
       {super.key,
       required this.labelText,
@@ -15,7 +17,8 @@ class CommonTextfield extends StatelessWidget {
       required this.suffixIcon,
       required this.isObscure,
       this.controller,
-      this.onChanged});
+      this.onChanged,
+      this.onSuffixIconPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,9 @@ class CommonTextfield extends StatelessWidget {
         labelStyle: TextStyle(fontSize: 22, color: CommonColor.primaryColor),
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.grey),
-        suffixIcon: Icon(suffixIcon, size: 18, color: CommonColor.primaryColor),
+        suffixIcon: IconButton(
+            onPressed: onSuffixIconPressed,
+            icon: Icon(suffixIcon, size: 18, color: CommonColor.primaryColor)),
       ),
     );
   }
